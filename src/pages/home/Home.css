@@ -1,0 +1,39 @@
+.hero {
+  padding-top: 90px;
+  background-color: var(--background-color);
+}
+.hero-content {
+  /* margin-top: 150px; */
+  background-color: #1c205d;
+  display: flex;
+  border-radius: 16px;
+  margin: 0px 40px 40px 40px;
+}
+.texts {
+  text-align: left;
+  padding: 170px 0px 0px 60px;
+  /* padding: auto; */
+}
+.texts p {
+  font-size: 18px;
+  line-height: 1.7em;
+  margin-top: 0;
+  font-weight: 400;
+  color: #999999;
+  padding: 20px 0px;
+}
+.texts h1 {
+  font-size: 48px;
+  color: white;
+  font-weight: 600;
+}
+.texts h1 span {
+  background: linear-gradient(45deg, #797ef6, #1aa7ec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.owl {
+  width: 560px;
+  margin: 50px 60px 50px 0px;
+  /* border-radius: 20px; */
+}

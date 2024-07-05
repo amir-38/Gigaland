@@ -1,0 +1,54 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 90px;
+  align-items: center;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: var(--background-color);
+}
+
+.logo {
+  margin-left: 30px;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+}
+
+.nav-list li {
+  padding: 10px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.wallet {
+  background-color: var(--button-background-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.wallet:hover {
+  background-color: var(--button-hover-background-color);
+}
+
+.dark-mode-toggle {
+  border: none;
+  text-align: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
