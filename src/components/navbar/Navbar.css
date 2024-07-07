@@ -7,7 +7,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 100;
-  background-color: var(--background-color);
+  background-color: var(--background-color-main);
 }
 
 .logo {
@@ -47,8 +47,13 @@ header {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: var(--background-color);
+  background-color: var(--toggle-btn);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.dark-mode-toggle svg {
+  fill: var(--text-color-togl);
+  width: 20px;
+  height: 20px;
 }

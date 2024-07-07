@@ -1,30 +1,13 @@
-import React, { useState, useEffect } from "react";
+// src/components/Navbar.js
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { IoMdSunny } from "react-icons/io";
 import { FaRegMoon } from "react-icons/fa";
+import useDarkMode from "../../hooks/UseDarkMode";
 
 export const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.style.setProperty("--background-color", "#040836");
-      root.style.setProperty("--text-color", "white");
-      root.style.setProperty("--button-background-color", "#333");
-      root.style.setProperty("--button-hover-background-color", "#555");
-    } else {
-      root.style.setProperty("--background-color", "white");
-      root.style.setProperty("--text-color", "black");
-      root.style.setProperty("--button-background-color", "#007bff");
-      root.style.setProperty("--button-hover-background-color", "#0056b3");
-    }
-  }, [isDarkMode]);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
     <header>
@@ -49,10 +32,12 @@ export const Navbar = () => {
         </li>
         <li>
           <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-            {isDarkMode ? <IoMdSunny /> : <FaRegMoon />}
+            {isDarkMode ? <IoMdSunny className="svg" /> : <FaRegMoon />}
           </button>
         </li>
       </ul>
     </header>
   );
 };
+
+export default Navbar;

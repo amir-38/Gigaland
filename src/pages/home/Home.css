@@ -1,10 +1,10 @@
 .hero {
   padding-top: 90px;
-  background-color: var(--background-color);
+  background-color: var(--background-color-main);
 }
 .hero-content {
   /* margin-top: 150px; */
-  background-color: #1c205d;
+  background-color: var(--background-color-second);
   display: flex;
   border-radius: 16px;
   margin: 0px 40px 40px 40px;
@@ -36,4 +36,70 @@
   width: 560px;
   margin: 50px 60px 50px 0px;
   /* border-radius: 20px; */
+}
+
+/* // section wallets */
+
+/* .wallets {
+  display: flex;
+  justify-content: center;
+}
+.wallet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #999999;
+  margin: 10px;
+  border: none;
+  border-radius: 15px;
+  width: 160px;
+} */
+.wallets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.wallet-card {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 160px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateX(-30%);
+  transition: opacity 0.37s ease-out, transform 2s ease-out;
+}
+
+.wallet-card.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wallet-img img {
+  width: 50px;
+  height: 50px;
+}
+
+.wallet-card:nth-child(1).show {
+  transition-delay: 0s;
+}
+.wallet-card:nth-child(2).show {
+  transition-delay: 0.4s;
+}
+.wallet-card:nth-child(3).show {
+  transition-delay: 0.8s;
+}
+.wallet-card:nth-child(4).show {
+  transition-delay: 1.2s;
+}
+.wallet-card:nth-child(5).show {
+  transition-delay: 1.6s;
+}
+.wallet-card:nth-child(6).show {
+  transition-delay: 2s;
 }
