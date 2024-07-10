@@ -1,0 +1,8 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 200px;
+  color: white;
+  /* font-size: 40px; */
+}

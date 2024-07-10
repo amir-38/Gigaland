@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -8,6 +7,7 @@ import useDarkMode from "../../hooks/UseDarkMode";
 
 export const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const userId = 1; // Пример использования статического ID
 
   return (
     <header>
@@ -26,6 +26,12 @@ export const Navbar = () => {
         </li>
         <li>
           <Link to="/register">Register</Link>
+        </li>
+        <li>
+          <Link to={`/profile/${userId}`}>ProfilePage</Link>
+        </li>
+        <li>
+          <Link to="/edit">Edit</Link>
         </li>
         <li>
           <button className="wallet">Connect Wallet</button>

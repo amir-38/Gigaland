@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  gap: 20px;
+}
+/* .relative {
+  position: relative;
+} */
+.first-circle {
+  background-color: #2b367c;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.second-circle {
+  margin: -50px 10px 10px 40px;
+}
+
+.second-circle img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: border 0.3s ease;
+}
+.second-circle img:hover {
+  border: 4px solid #588cf3;
+}
+.second-circle svg {
+  fill: #588cf3;
+  margin: 10px 10px 0px -14px;
+  background-color: white;
+  border-radius: 50%;
+}
+.circle-card-text {
+  color: white;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+}
+.first-text-line {
+  font-size: 18px;
+  display: flex;
+}
+.first-text-line :nth-child(2) {
+  padding-left: 20px;
+}
+.second-text-line {
+  font-size: 14px;
+  color: #727386;
+}
+.second-text-line :nth-child(2) {
+  padding-left: 20px;
+}

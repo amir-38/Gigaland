@@ -3,7 +3,11 @@ import { Layout } from "./components/layout/Layout";
 import Home from "./pages/home/Home";
 import Explore from "./pages/explore/Explore";
 import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
+import RegistrationForm from "./pages/register/Register";
+
+import ProfilePage from "./pages/profile/ProfilePage";
+
+import EditProfile from "./pages/editProfile/EditProfile";
 import "./App.css";
 
 function App() {
@@ -14,7 +18,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          {/* <Route path="/edit" element={<EditProfile />} /> */}
+          <Route path="/edit/:id" element={<EditProfile />} />
+          <Route path="/register" element={<RegistrationForm />} />
         </Route>
       </Routes>
     </>

@@ -103,3 +103,14 @@
 .wallet-card:nth-child(6).show {
   transition-delay: 2s;
 }
+/* circle card section   */
+.circle-list-cont {
+  background-color: #1c205d;
+  margin: 50px;
+  border-radius: 20px;
+}
+.circle-users-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
