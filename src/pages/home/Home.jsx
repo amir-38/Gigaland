@@ -2,9 +2,11 @@
 // import SimpleSlider from "../../components/carousel/Carousel";
 // import "./Home.css";
 // import CircleCard from "../../components/circleCard/CircleCard";
+// import axios from "axios"; // Импортируйте axios для запросов
 
 // const Home = () => {
 //   const [animatedCards, setAnimatedCards] = useState(new Set());
+//   const [users, setUsers] = useState([]); // Добавьте состояние для пользователей
 
 //   const checkCards = useCallback(() => {
 //     const cards = document.querySelectorAll(".wallet-card");
@@ -32,6 +34,18 @@
 //       window.removeEventListener("scroll", checkCards);
 //     };
 //   }, [checkCards]);
+
+//   useEffect(() => {
+//     // Запрос на JSON сервер для получения данных пользователей
+//     axios
+//       .get("http://localhost:3000/users")
+//       .then((response) => {
+//         setUsers(response.data);
+//       })
+//       .catch((error) => {
+//         console.error("There was an error fetching the users!", error);
+//       });
+//   }, []);
 
 //   return (
 //     <>
@@ -100,24 +114,21 @@
 //             <h3>Top sellers in 1 day</h3>
 //           </div>
 //           <div className="circle-users-card">
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
-//             <CircleCard />
+//             {users.map((user) => (
+//               <CircleCard
+//                 key={user.id} // Уникальный идентификатор для ключа
+//                 id={user.id} // Передача ID пользователя
+//                 name={user.name}
+//                 eth="3.2ETH" // Укажите фактическую ETH или удалите это поле
+//                 username={`@${user.username}`}
+//                 balance="$4,823" // Укажите фактический баланс или удалите это поле
+//                 image={user.image || "../../../src/assets/images/author-1.jpg"} // Укажите фактическое изображение или путь по умолчанию
+//               />
+//             ))}
 //           </div>
 //         </div>
 //       </section>
+//       {/* <ProfilePage /> */}
 //     </>
 //   );
 // };
@@ -128,11 +139,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import SimpleSlider from "../../components/carousel/Carousel";
 import "./Home.css";
 import CircleCard from "../../components/circleCard/CircleCard";
-import axios from "axios"; // Импортируйте axios для запросов
+import axios from "axios";
+import NftCard from "../../components/nftCard/NftCard";
 
 const Home = () => {
   const [animatedCards, setAnimatedCards] = useState(new Set());
-  const [users, setUsers] = useState([]); // Добавьте состояние для пользователей
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   const checkCards = useCallback(() => {
     const cards = document.querySelectorAll(".wallet-card");
@@ -162,16 +176,44 @@ const Home = () => {
   }, [checkCards]);
 
   useEffect(() => {
-    // Запрос на JSON сервер для получения данных пользователей
     axios
       .get("http://localhost:3000/users")
       .then((response) => {
         setUsers(response.data);
+        setFilteredUsers(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the users!", error);
       });
   }, []);
+
+  useEffect(() => {
+    let filtered = users;
+    const now = new Date();
+
+    if (filter === "day") {
+      filtered = users.filter((user) => {
+        const userDate = new Date(user.date);
+        return userDate >= new Date(now.setDate(now.getDate() - 1));
+      });
+    } else if (filter === "week") {
+      filtered = users.filter((user) => {
+        const userDate = new Date(user.date);
+        return userDate >= new Date(now.setDate(now.getDate() - 7));
+      });
+    } else if (filter === "month") {
+      filtered = users.filter((user) => {
+        const userDate = new Date(user.date);
+        return userDate >= new Date(now.setMonth(now.getMonth() - 1));
+      });
+    }
+
+    setFilteredUsers(filtered);
+  }, [filter, users]);
+
+  const getColumnData = (startIndex) => {
+    return filteredUsers.slice(startIndex, startIndex + 5);
+  };
 
   return (
     <>
@@ -237,24 +279,64 @@ const Home = () => {
       <section className="circle-list">
         <div className="circle-list-cont">
           <div className="select-date">
-            <h3>Top sellers in 1 day</h3>
+            <h3>Top sellers in</h3>
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+              <option value="all">All</option>
+              <option value="day">Last 24 Hours</option>
+              <option value="week">Last 7 Days</option>
+              <option value="month">Last Month</option>
+            </select>
           </div>
           <div className="circle-users-card">
-            {users.map((user) => (
-              <CircleCard
-                key={user.id} // Уникальный идентификатор для ключа
-                id={user.id} // Передача ID пользователя
-                name={user.name}
-                eth="3.2ETH" // Укажите фактическую ETH или удалите это поле
-                username={`@${user.username}`}
-                balance="$4,823" // Укажите фактический баланс или удалите это поле
-                image={user.image || "../../../src/assets/images/author-1.jpg"} // Укажите фактическое изображение или путь по умолчанию
-              />
-            ))}
+            <div className="column">
+              {getColumnData(0).map((user) => (
+                <CircleCard
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  eth="3.2ETH"
+                  username={`@${user.username}`}
+                  balance="$4,823"
+                  image={user.image}
+                />
+              ))}
+            </div>
+            <div className="column">
+              {getColumnData(5).map((user) => (
+                <CircleCard
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  eth="3.2ETH"
+                  username={`@${user.username}`}
+                  balance="$4,823"
+                  image={user.image}
+                />
+              ))}
+            </div>
+            <div className="column">
+              {getColumnData(10).map((user) => (
+                <CircleCard
+                  key={user.id}
+                  id={user.id}
+                  name={user.name}
+                  eth="3.2ETH"
+                  username={`@${user.username}`}
+                  balance="$4,823"
+                  image={user.image}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
-      {/* <ProfilePage /> */}
+      <section className="nft-cards">
+        <NftCard />
+        <NftCard />
+        <NftCard />
+        <NftCard />
+        <NftCard />
+      </section>
     </>
   );
 };

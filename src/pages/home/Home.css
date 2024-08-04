@@ -65,11 +65,12 @@
 }
 
 .wallet-card {
-  background-color: #f1f1f1;
+  background-color: #0c103c;
   border: 1px solid #ccc;
   padding: 20px;
   width: 160px;
   border-radius: 10px;
+  border: none;
   opacity: 0;
   transform: translateX(-30%);
   transition: opacity 0.37s ease-out, transform 2s ease-out;
@@ -111,6 +112,18 @@
 }
 .circle-users-card {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr); /* Три колонки */
+  gap: 30px; /* Расстояние между колонками и карточками */
+}
+
+.column {
+  display: flex;
+  flex-direction: column; /* Колонки по вертикали */
+  gap: 30px; /* Расстояние между карточками внутри колонки */
+}
+/* nft  */
+
+.nft-cards {
+  display: flex;
+  justify-content: center;
 }

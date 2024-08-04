@@ -7,7 +7,7 @@ import useDarkMode from "../../hooks/UseDarkMode";
 
 export const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const userId = 1; // Пример использования статического ID
+  const userId = 1;
 
   return (
     <header>
