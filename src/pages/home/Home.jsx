@@ -335,7 +335,6 @@ const Home = () => {
         <NftCard />
         <NftCard />
         <NftCard />
-        <NftCard />
       </section>
     </>
   );

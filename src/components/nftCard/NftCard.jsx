@@ -16,7 +16,7 @@ const NftCard = () => {
       </div>
       <div
         className={`nft-img-modal ${
-          isModalOpen ? "modal-close" : "modal-open"
+          isModalOpen ? "modal-open" : "modal-close"
         }`}
       >
         <button>buy now</button>
